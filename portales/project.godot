@@ -12,8 +12,14 @@ config_version=5
 
 config/name="PORTALES"
 run/main_scene="uid://ckbv7up2dhrsl"
-config/features=PackedStringArray("4.4", "Forward Plus")
+config/features=PackedStringArray("4.5", "Forward Plus")
 config/icon="res://icon.svg"
+
+[global_group]
+
+portalEntrada=""
+portalSalida=""
+player=""
 
 [input]
 
