@@ -4,20 +4,20 @@
 [ext_resource type="Texture2D" uid="uid://bhr7sic523hxc" path="res://icon.svg" id="2_ylrkh"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hgvv3"]
-size = Vector2(10, 41.25)
+size = Vector2(6, 15)
 
-[node name="Portal" type="Node2D"]
-position = Vector2(4, 4)
+[node name="Portal" type="Node2D" groups=["portalEntrada"]]
 script = ExtResource("1_8rctx")
 metadata/_edit_group_ = true
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(-4, -4)
+position = Vector2(9.536743e-07, 9.536743e-07)
+scale = Vector2(0.261, 0.242)
 texture = ExtResource("2_ylrkh")
 
 [node name="Area2D" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-position = Vector2(-4, 39.625)
+position = Vector2(0, 7.5)
 shape = SubResource("RectangleShape2D_hgvv3")
 debug_color = Color(0.16234034, 0.64468575, 0, 0.41960785)

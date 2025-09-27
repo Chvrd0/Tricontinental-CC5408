@@ -1,6 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://ckbv7up2dhrsl"]
+[gd_scene load_steps=6 format=3 uid="uid://ckbv7up2dhrsl"]
 
 [ext_resource type="PackedScene" uid="uid://cde78dlgk1acq" path="res://Player/player.tscn" id="1_mdr75"]
+[ext_resource type="PackedScene" uid="uid://6xasnqsryygo" path="res://Portal/Nodo/portal.tscn" id="2_0ok0r"]
+[ext_resource type="PackedScene" uid="uid://ccnqpatetrj6x" path="res://Portal/Nodo/portalSalida.tscn" id="3_xbsqi"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_s3x4c"]
 
@@ -22,4 +24,10 @@ position = Vector2(497, 554)
 shape = SubResource("WorldBoundaryShape2D_mdr75")
 
 [node name="Player" parent="." instance=ExtResource("1_mdr75")]
-position = Vector2(81, 124)
+position = Vector2(30, 569)
+
+[node name="Portal" parent="." instance=ExtResource("2_0ok0r")]
+position = Vector2(322, 631)
+
+[node name="PortalSalida" parent="." instance=ExtResource("3_xbsqi")]
+position = Vector2(544, 631)
