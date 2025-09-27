@@ -6,8 +6,8 @@
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_s3x4c"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_xbsqi"]
-size = Vector2(20, 177)
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_mdr75"]
+normal = Vector2(-1, 0)
 
 [node name="Nivel" type="Node2D"]
 
@@ -20,8 +20,8 @@ shape = SubResource("WorldBoundaryShape2D_s3x4c")
 [node name="StaticBody2D2" type="StaticBody2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D2"]
-position = Vector2(497, 558.5)
-shape = SubResource("RectangleShape2D_xbsqi")
+position = Vector2(497, 554)
+shape = SubResource("WorldBoundaryShape2D_mdr75")
 
 [node name="Player" parent="." instance=ExtResource("1_mdr75")]
 position = Vector2(30, 569)
