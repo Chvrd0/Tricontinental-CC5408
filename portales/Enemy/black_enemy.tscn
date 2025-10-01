@@ -1,0 +1,80 @@
+[gd_scene load_steps=12 format=3 uid="uid://dcx25wap77bvy"]
+
+[ext_resource type="Texture2D" uid="uid://37hwyfcsabi8" path="res://sprites/male/kuro/base/move.png" id="1_3yynl"]
+[ext_resource type="Script" uid="uid://cqfpl78i06ok6" path="res://Enemy/enemy.gd" id="2_j7xd1"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_pg1cd"]
+radius = 5.0
+height = 16.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_e6yyg"]
+atlas = ExtResource("1_3yynl")
+region = Rect2(0, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1t02c"]
+atlas = ExtResource("1_3yynl")
+region = Rect2(24, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_p0dfa"]
+atlas = ExtResource("1_3yynl")
+region = Rect2(48, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6foc1"]
+atlas = ExtResource("1_3yynl")
+region = Rect2(72, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_s0l6n"]
+atlas = ExtResource("1_3yynl")
+region = Rect2(96, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_x25s1"]
+atlas = ExtResource("1_3yynl")
+region = Rect2(120, 0, 24, 24)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_4l833"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_e6yyg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1t02c")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_p0dfa")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6foc1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_s0l6n")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_x25s1")
+}],
+"loop": true,
+"name": &"move",
+"speed": 6.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_j7xd1"]
+radius = 5.0
+height = 18.0
+
+[node name="CharacterBody2D" type="CharacterBody2D"]
+script = ExtResource("2_j7xd1")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_pg1cd")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_4l833")
+animation = &"move"
+frame_progress = 0.731925
+
+[node name="Hurtbox" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
+shape = SubResource("CapsuleShape2D_j7xd1")
+
+[connection signal="body_entered" from="Hurtbox" to="." method="_on_hurtbox_body_entered"]
