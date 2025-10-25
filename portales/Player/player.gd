@@ -3,6 +3,7 @@ extends CharacterBody2D
 @export var max_speed = 140
 @export var jump_speed = 190
 @export var gravity = 500
+@export var side = false
 @export var acceleration = 2000
 
 @onready var player: CharacterBody2D = $"."
@@ -12,6 +13,7 @@ extends CharacterBody2D
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 @onready var animation_tree: AnimationTree = $AnimationTree
 @onready var playback = animation_tree["parameters/playback"]
+
 
 func _ready():
 	add_to_group("player")
@@ -29,7 +31,10 @@ func _physics_process(delta: float) -> void:
 		pivot.scale.x = sign(move_input)
 	#SALTO
 	if not is_on_floor():
-		velocity.y += gravity*delta
+		if side:
+			velocity.x += gravity*delta
+		else:
+			velocity.y += gravity*delta
 	if is_on_floor() and Input.is_action_just_pressed("jump"):
 		velocity.y += -jump_speed
 		
