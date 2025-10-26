@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://bhr7sic523hxc" path="res://icon.svg" id="1_cdewl"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_bo5ia"]
-size = Vector2(5, 15)
+size = Vector2(22, 25)
 
 [node name="PortalSalida" type="Node2D" groups=["portalSalida"]]
 script = ExtResource("1_bo5ia")
@@ -16,6 +16,6 @@ texture = ExtResource("1_cdewl")
 [node name="Area2D" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-position = Vector2(0, 7.5)
+position = Vector2(0, 2.5)
 shape = SubResource("RectangleShape2D_bo5ia")
 debug_color = Color(0.9125069, 9.722412e-05, 0.72473234, 0.41960785)
