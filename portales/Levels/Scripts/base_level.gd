@@ -8,7 +8,7 @@ const PLAYER = preload("uid://cde78dlgk1acq")
 @onready var camera: CharacterBody2D = $Camera
 @onready var portal_fantasma: Node2D = $PortalFantasma
 
-@export var max_speed = 140
+@export var max_speed = 1000
 @export var acceleration = 2000
 
 var preparacion1: bool = true
