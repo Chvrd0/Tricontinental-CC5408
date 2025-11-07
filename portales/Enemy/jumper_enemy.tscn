@@ -1,0 +1,157 @@
+[gd_scene load_steps=22 format=3 uid="uid://c840edghwqhnb"]
+
+[ext_resource type="Script" uid="uid://du4rn30mrwes0" path="res://Enemy/jumper_enemy.gd" id="1_t41b1"]
+[ext_resource type="Texture2D" uid="uid://chxmal6u2xsgq" path="res://sprites/male/loki/base/idle.png" id="2_t41b1"]
+[ext_resource type="Texture2D" uid="uid://1fu4v0vkalwc" path="res://sprites/male/loki/base/jump.png" id="3_76o5r"]
+[ext_resource type="Texture2D" uid="uid://cs1647sqknigh" path="res://sprites/male/loki/base/move.png" id="4_l74fd"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_pg1cd"]
+radius = 5.0
+height = 16.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2yf72"]
+atlas = ExtResource("2_t41b1")
+region = Rect2(0, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_geaq2"]
+atlas = ExtResource("2_t41b1")
+region = Rect2(24, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jgvd7"]
+atlas = ExtResource("2_t41b1")
+region = Rect2(48, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k4xpd"]
+atlas = ExtResource("3_76o5r")
+region = Rect2(0, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jh16m"]
+atlas = ExtResource("3_76o5r")
+region = Rect2(24, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yafyw"]
+atlas = ExtResource("3_76o5r")
+region = Rect2(48, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_c5qc7"]
+atlas = ExtResource("3_76o5r")
+region = Rect2(72, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pmnv2"]
+atlas = ExtResource("4_l74fd")
+region = Rect2(0, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sp6bx"]
+atlas = ExtResource("4_l74fd")
+region = Rect2(24, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_t718s"]
+atlas = ExtResource("4_l74fd")
+region = Rect2(48, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2tixp"]
+atlas = ExtResource("4_l74fd")
+region = Rect2(72, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rcm46"]
+atlas = ExtResource("4_l74fd")
+region = Rect2(96, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lmkfw"]
+atlas = ExtResource("4_l74fd")
+region = Rect2(120, 0, 24, 24)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_4l833"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2yf72")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_geaq2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jgvd7")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 4.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_k4xpd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jh16m")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yafyw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_c5qc7")
+}],
+"loop": false,
+"name": &"jump",
+"speed": 6.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pmnv2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sp6bx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_t718s")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2tixp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rcm46")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lmkfw")
+}],
+"loop": true,
+"name": &"move",
+"speed": 6.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_j7xd1"]
+radius = 5.0
+height = 18.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8tl65"]
+size = Vector2(158, 20)
+
+[node name="JumperEnemy" type="CharacterBody2D"]
+script = ExtResource("1_t41b1")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_pg1cd")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_4l833")
+animation = &"move"
+
+[node name="Hurtbox" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
+shape = SubResource("CapsuleShape2D_j7xd1")
+
+[node name="PlayerDetection" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerDetection"]
+shape = SubResource("RectangleShape2D_8tl65")
+
+[node name="JumpTimer" type="Timer" parent="."]
+wait_time = 1.5
+one_shot = true
+
+[node name="WallDetector" type="RayCast2D" parent="."]
+target_position = Vector2(10, 0)
+
+[connection signal="body_entered" from="Hurtbox" to="." method="_on_hurtbox_body_entered"]
+[connection signal="body_entered" from="PlayerDetection" to="." method="_on_player_detection_body_entered"]
+[connection signal="body_exited" from="PlayerDetection" to="." method="_on_player_detection_body_exited"]
