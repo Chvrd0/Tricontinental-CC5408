@@ -16,6 +16,8 @@ var preparacion2: bool = true
 
 @export var spawn_point: Vector2
 @export var cantidad_portales: int
+@export var min_dist = 50
+@export var max_dist = 300
 
 func _physics_process(delta: float) -> void:
 	if preparacion1:
@@ -36,9 +38,18 @@ func _physics_process(delta: float) -> void:
 					entrada_inst.global_position = mouse
 					entrada = false
 				else:
+					var entrada_act = get_tree().get_nodes_in_group("portalEntrada")[-1].global_position
+					var max: Vector2 = mouse - entrada_act
+					var distance = max.length()
+					var direcc = max.normalized()
+					var limit =clamp(distance, min_dist, max_dist)
+					portal_fantasma.global_position = entrada_act + (direcc * limit)
+					
+					
 					var salida_inst = PORTAL_SALIDA.instantiate()
 					add_child(salida_inst)
-					salida_inst.global_position = mouse
+					
+					salida_inst.global_position = portal_fantasma.global_position
 					entrada = true
 					cantidad_portales -= 1
 				
