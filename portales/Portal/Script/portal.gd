@@ -1,3 +1,10 @@
+## Portal.gd
+##
+## Script encargado de gestionar los portales del juego.
+## Permite enlazar portales de entrada y salida, teletransportar al jugador
+## y actualizar la dirección de gravedad al atravesar un portal.
+
+
 extends Node2D
 
 

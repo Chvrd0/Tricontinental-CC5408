@@ -1,3 +1,13 @@
+## base_level.gd
+##
+## Nodo controlador de la fase de preparación inicial del nivel.
+## Permite:
+##  - Mover una cámara libremente por el mapa.
+##  - Posicionar pares de portales (entrada y salida) usando el mouse.
+##  - Rotar los portales antes de colocarlos.
+##  - Spawnear al jugador en un punto definido una vez terminada la preparación.
+
+
 extends Node2D
 
 

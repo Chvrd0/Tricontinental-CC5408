@@ -1,3 +1,10 @@
+## Player.gd
+##
+## Clase que representa al jugador principal del juego.
+## Controla el movimiento horizontal, salto, animaciones y adaptación
+## de la gravedad en distintas direcciones (por ejemplo, en portales de gravedad).
+
+
 class_name Player
 extends CharacterBody2D
 
