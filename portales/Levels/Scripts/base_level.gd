@@ -145,9 +145,9 @@ func _physics_process(delta: float) -> void:
 					var entrada_act: Vector2 = get_tree().get_nodes_in_group("portalEntrada")[-1].global_position
 					
 					# Vector desde la entrada hacia donde hizo click el jugador
-					var max: Vector2 = mouse - entrada_act
-					var distance: float = max.length()
-					var direcc: Vector2 = max.normalized()
+					var max_d: Vector2 = mouse - entrada_act
+					var distance: float = max_d.length()
+					var direcc: Vector2 = max_d.normalized()
 					
 					# Limitamos la distancia entre min_dist y max_dist
 					var limit: float = clamp(distance, min_dist, max_dist)
@@ -184,4 +184,5 @@ func _physics_process(delta: float) -> void:
 			var player = PLAYER.instantiate()
 			player.global_position = spawn_point
 			add_child(player)
+			camera.queue_free()
 			preparacion2 = false

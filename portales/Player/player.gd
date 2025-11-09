@@ -54,6 +54,9 @@ var gravity_direction: Vector2 = Vector2.DOWN
 ## Reproductor de animaciones actual del árbol (permite cambiar de estado)
 @onready var playback = animation_tree["parameters/playback"]
 
+## Referencia a la cámara, inicialmente desactivada
+@onready var camera_2d: Camera2D = $Camera2D
+
 
 # ===========================
 # ==== FUNCIONES PRINCIPALES ====
@@ -63,9 +66,11 @@ var gravity_direction: Vector2 = Vector2.DOWN
 func _ready() -> void:
 	add_to_group("player")  # Permite identificar al jugador desde otros scripts
 	
-	# --- NUEVA LÍNEA ---
 	# Establece la rotación inicial del jugador en base a la dirección de gravedad actual
 	actualizar_rotacion_visual()
+	
+	# Activa la cámara del jugador
+	camera_2d.enabled = true
 
 
 ## Se ejecuta en cada frame de física (60 fps por defecto)
