@@ -1,3 +1,3 @@
 extends Node2D
 
-var g_side = 1
+var g_final = [1, 0]
