@@ -19,6 +19,9 @@ var preparacion2: bool = true
 @export var min_dist = 50
 @export var max_dist = 300
 
+# NUEVA VARIABLE: Define cuánto rotará cada vez (90 grados)
+var rotation_step = PI / 2
+
 func _physics_process(delta: float) -> void:
 	if preparacion1:
 		var mouse = get_global_mouse_position()
@@ -30,28 +33,42 @@ func _physics_process(delta: float) -> void:
 		
 		portal_fantasma.global_position = mouse
 		
+		# --- NUEVA LÍNEA ---
+		# Rota el portal fantasma antes de colocarlo
+		if Input.is_action_just_pressed("rotate_right"):
+			portal_fantasma.rotate(rotation_step)
+		# --- FIN DE LÍNEA NUEVA ---
+		
 		if Input.is_action_just_pressed("click"):
 			if cantidad_portales > 0:
 				if entrada:
 					var entrada_inst = PORTAL.instantiate()
 					add_child(entrada_inst)
 					entrada_inst.global_position = mouse
+					# --- LÍNEA MODIFICADA ---
+					entrada_inst.rotation = portal_fantasma.rotation # Asigna la rotación
 					entrada = false
 				else:
 					var entrada_act = get_tree().get_nodes_in_group("portalEntrada")[-1].global_position
 					var max: Vector2 = mouse - entrada_act
 					var distance = max.length()
 					var direcc = max.normalized()
-					var limit =clamp(distance, min_dist, max_dist)
+					var limit = clamp(distance, min_dist, max_dist)
+					# Usa la posición del portal fantasma, que ya incluye la rotación
 					portal_fantasma.global_position = entrada_act + (direcc * limit)
-					
 					
 					var salida_inst = PORTAL_SALIDA.instantiate()
 					add_child(salida_inst)
 					
 					salida_inst.global_position = portal_fantasma.global_position
+					# --- LÍNEA MODIFICADA ---
+					salida_inst.rotation = portal_fantasma.rotation # Asigna la rotación
+					
 					entrada = true
 					cantidad_portales -= 1
+					
+					# --- NUEVA LÍNEA ---
+					portal_fantasma.rotation = 0.0 # Resetea la rotación del fantasma para el próximo par
 				
 		if Input.is_action_just_pressed("jump"):
 			preparacion1 = false
