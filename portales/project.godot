@@ -12,14 +12,22 @@ config_version=5
 
 config/name="PORTALES"
 run/main_scene="uid://8lm48ga4p14y"
-config/features=PackedStringArray("4.5", "Forward Plus")
+config/features=PackedStringArray("4.4", "Forward Plus")
 config/icon="res://icon.svg"
+
+[autoload]
+
+LevelManager="*res://autoloads/LevelManager.gd"
 
 [global_group]
 
 portalEntrada=""
 portalSalida=""
 player=""
+
+[gui]
+
+theme/custom_font="uid://ci2nanq8qrtrx"
 
 [input]
 
@@ -63,6 +71,11 @@ move_up={
 move_down={
 "deadzone": 0.2,
 "events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":83,"key_label":0,"unicode":115,"location":0,"echo":false,"script":null)
+]
+}
+pause={
+"deadzone": 0.2,
+"events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":4194305,"key_label":0,"unicode":0,"location":0,"echo":false,"script":null)
 ]
 }
 
