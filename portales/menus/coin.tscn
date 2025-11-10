@@ -1,0 +1,75 @@
+[gd_scene load_steps=10 format=3 uid="uid://bk82us06cwtrf"]
+
+[ext_resource type="Script" uid="uid://cw7jqfdixtvty" path="res://menus/coin.gd" id="1_504i3"]
+[ext_resource type="Texture2D" uid="uid://r3xb8ubj1np1" path="res://sprites/coin.png" id="2_0juho"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pdq0q"]
+
+[sub_resource type="Animation" id="Animation_h4etq"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_w14il"]
+resource_name = "idle_coin"
+length = 0.55
+loop_mode = 1
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.1, 0.15, 0.2, 0.25, 0.3, 0.35, 0.4, 0.45, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [11, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_o4fra"]
+_data = {
+&"RESET": SubResource("Animation_h4etq"),
+&"idle_coin": SubResource("Animation_w14il")
+}
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_504i3"]
+animation = &"idle_coin"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_0juho"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_5kx3r"]
+states/idle_coin/node = SubResource("AnimationNodeAnimation_504i3")
+states/idle_coin/position = Vector2(366, 100)
+transitions = ["Start", "idle_coin", SubResource("AnimationNodeStateMachineTransition_0juho")]
+
+[node name="Coin" type="Area2D"]
+script = ExtResource("1_504i3")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_pdq0q")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_0juho")
+hframes = 12
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_o4fra")
+}
+
+[node name="AnimationTree" type="AnimationTree" parent="."]
+tree_root = SubResource("AnimationNodeStateMachine_5kx3r")
+anim_player = NodePath("../AnimationPlayer")
