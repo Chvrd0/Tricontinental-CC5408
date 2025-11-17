@@ -5,7 +5,6 @@
 
 [node name="BaseLevel" type="Node2D"]
 script = ExtResource("1_jefml")
-spawn_point = Vector2(100, 0)
 cantidad_portales = 5
 
 [node name="Camera" type="CharacterBody2D" parent="."]

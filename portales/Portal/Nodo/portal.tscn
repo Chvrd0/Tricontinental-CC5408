@@ -1,25 +1,169 @@
-[gd_scene load_steps=4 format=3 uid="uid://6xasnqsryygo"]
+[gd_scene load_steps=25 format=3 uid="uid://6xasnqsryygo"]
 
 [ext_resource type="Script" uid="uid://hsvj78dd8pfu" path="res://Portal/Script/portal.gd" id="1_8rctx"]
-[ext_resource type="Texture2D" uid="uid://bhr7sic523hxc" path="res://icon.svg" id="2_ylrkh"]
+[ext_resource type="Texture2D" uid="uid://d1kx4dr3jqtcj" path="res://sprites/portal/Dimensional_Portal.png" id="2_8rctx"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ylrkh"]
+atlas = ExtResource("2_8rctx")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k13ad"]
+atlas = ExtResource("2_8rctx")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_efpor"]
+atlas = ExtResource("2_8rctx")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wndl8"]
+atlas = ExtResource("2_8rctx")
+region = Rect2(0, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kauii"]
+atlas = ExtResource("2_8rctx")
+region = Rect2(32, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sakhw"]
+atlas = ExtResource("2_8rctx")
+region = Rect2(64, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fkmbi"]
+atlas = ExtResource("2_8rctx")
+region = Rect2(64, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8gpl4"]
+atlas = ExtResource("2_8rctx")
+region = Rect2(32, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1fjbv"]
+atlas = ExtResource("2_8rctx")
+region = Rect2(0, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1gfnb"]
+atlas = ExtResource("2_8rctx")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_63iwx"]
+atlas = ExtResource("2_8rctx")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_36ree"]
+atlas = ExtResource("2_8rctx")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_qxf4s"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ylrkh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_k13ad")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_efpor")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wndl8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kauii")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sakhw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fkmbi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8gpl4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1fjbv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1gfnb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_63iwx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_36ree")
+}],
+"loop": true,
+"name": &"default",
+"speed": 12.0
+}]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hgvv3"]
 size = Vector2(22, 25)
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_8rctx"]
+
+[sub_resource type="Gradient" id="Gradient_ylrkh"]
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_k13ad"]
+gradient = SubResource("Gradient_ylrkh")
+
+[sub_resource type="Curve" id="Curve_efpor"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_wndl8"]
+width = 270
+curve = SubResource("Curve_efpor")
+
+[sub_resource type="Curve" id="Curve_8rctx"]
+_limits = [-200.0, 200.0, 0.0, 1.0]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_ylrkh"]
+curve = SubResource("Curve_8rctx")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_kauii"]
+particle_flag_disable_z = true
+angle_min = -180.0
+angle_max = 180.0
+direction = Vector3(0, -1, 0)
+spread = 180.0
+initial_velocity_min = 300.0
+initial_velocity_max = 700.0
+gravity = Vector3(0, 0, 0)
+tangential_accel_min = -2.23517e-06
+tangential_accel_max = 600.0
+tangential_accel_curve = SubResource("CurveTexture_ylrkh")
+scale_min = 0.6
+scale_max = 1.4
+scale_curve = SubResource("CurveTexture_wndl8")
+color = Color(0, 0, 1, 1)
+color_ramp = SubResource("GradientTexture1D_k13ad")
 
 [node name="Portal" type="Node2D" groups=["portalEntrada"]]
 script = ExtResource("1_8rctx")
 metadata/_edit_group_ = true
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(9.536743e-07, 9.536743e-07)
-scale = Vector2(0.242, 0.242)
-texture = ExtResource("2_ylrkh")
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_qxf4s")
+autoplay = "default"
+frame_progress = 0.0197163
 
 [node name="Area2D" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 position = Vector2(0, 2.5)
 shape = SubResource("RectangleShape2D_hgvv3")
-debug_color = Color(0.16234034, 0.64468575, 0, 0.41960785)
+debug_color = Color(0.16234, 0.644686, 0, 0.419608)
+
+[node name="ZapEffect" type="GPUParticles2D" parent="."]
+emitting = false
+amount = 20
+texture = SubResource("CanvasTexture_8rctx")
+lifetime = 0.25
+one_shot = true
+explosiveness = 1.0
+trail_enabled = true
+trail_lifetime = 0.6
+process_material = SubResource("ParticleProcessMaterial_kauii")
 
 [connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]

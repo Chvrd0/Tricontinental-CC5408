@@ -43,6 +43,33 @@ func _physics_process(delta: float) -> void:
 			link["Portal" + str(i + 1)] = salida[i]
 
 
+func play_zap() -> void:
+	var effect = $ZapEffect
+	if effect == null:
+		# No effect node; nothing to do.
+		return
+	if effect is GPUParticles2D:
+		# restart the burst
+		effect.emitting = false
+		await get_tree().process_frame
+		effect.emitting = true
+
+		# attempt to read 'lifetime' from the particle node if it exists
+		var wait_time: float = 0.25
+		var props := effect.get_property_list()
+		for p in props:
+			if p.has("name") and p.name == "lifetime":
+				# use get(...) to safely read it
+				var val = effect.get("lifetime")
+				if typeof(val) == TYPE_FLOAT or typeof(val) == TYPE_INT:
+					wait_time = float(val)
+				break
+
+		# wait for the particle's lifetime (small margin added)
+		await get_tree().create_timer(wait_time + 0.02).timeout
+		return
+
+
 # ===========================
 # ==== EVENTOS DE ÁREA ======
 # ===========================
@@ -62,6 +89,9 @@ func _on_area_2d_area_entered(area: Area2D) -> void:
 		# Obtenemos el portal de salida vinculado.
 		var exit_portal: Node2D = link[self.name]
 		
+		await play_zap()
+		player.visible = false
+		
 		# --- 1. TELETRANSPORTACIÓN ---
 		# Movemos al jugador a la posición global del portal de salida.
 		player.global_position = exit_portal.global_position
@@ -77,3 +107,4 @@ func _on_area_2d_area_entered(area: Area2D) -> void:
 		# Se verifica primero si el método existe, por seguridad.
 		if player.has_method("set_gravity_direction"):
 			player.set_gravity_direction(new_gravity_dir)
+		player.visible = true
