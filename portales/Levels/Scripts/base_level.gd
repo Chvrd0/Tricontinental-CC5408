@@ -27,6 +27,8 @@ var PORTAL_SALIDA = preload("uid://ccnqpatetrj6x")
 ## Escena del jugador.
 const PLAYER = preload("uid://cde78dlgk1acq")
 
+const PAUSE_MENU = preload("res://menus/pause_menu.tscn")
+
 
 # ===========================
 # ==== REFERENCIAS DE NODOS ==
@@ -119,6 +121,22 @@ func _ready() -> void:
 		spawn_position = Vector2.ZERO # Fallback para evitar crasheo.
 
 
+func _process(delta):
+	# Only allows pausing *after* the preparation phase
+	# and if the game is not already paused.
+	if not preparacion1 and not get_tree().paused:
+		if Input.is_action_just_pressed("pause"):
+			# Pause the game
+			get_tree().paused = true
+			print("PAUSING ---------------------------------")
+			
+			# Create an instance of the pause menu
+			var pause_menu_instance = PAUSE_MENU.instantiate()
+			
+			# Add the menu instance as a child of the current level
+			# This is the correct line:
+			add_child(pause_menu_instance)
+			
 
 # ===========================
 # ==== LÓGICA PRINCIPAL =======

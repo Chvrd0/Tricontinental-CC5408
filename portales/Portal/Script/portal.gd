@@ -26,7 +26,7 @@ var link: Dictionary = {}
 ## Se encarga de vincular dinámicamente cada portal de entrada con su correspondiente salida.
 ##
 ## @param delta Tiempo transcurrido desde el último frame de física.
-func _physics_process(delta: float) -> void:
+func _physics_process(delta) -> void:
 	# Si este nodo se llama "Portal", le asignamos el nombre "Portal1" por defecto.
 	if self.name == "Portal":
 		self.name = "Portal1"

@@ -11,13 +11,13 @@ config_version=5
 [application]
 
 config/name="PORTALES"
-run/main_scene="uid://8lm48ga4p14y"
+run/main_scene="uid://brr50a6ysysle"
 config/features=PackedStringArray("4.4", "Forward Plus")
 config/icon="res://icon.svg"
 
 [autoload]
 
-LevelManager="*res://autoloads/LevelManager.gd"
+LevelManager="*res://autoloads/level_manager.tscn"
 
 [global_group]
 
