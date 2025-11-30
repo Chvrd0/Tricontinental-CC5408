@@ -21,6 +21,8 @@ const PAUSE_MENU = preload("res://menus/pause_menu.tscn")
 
 @onready var camera: CharacterBody2D = $Camera
 @onready var portal_fantasma: Node2D = $PortalFantasma
+@onready var counter: Label = $Counter
+
 
 # ===========================
 # ==== PARÁMETROS EXPORTADOS ==
@@ -67,6 +69,7 @@ func _ready() -> void:
 	else:
 		push_warning("Spawn point node not assigned. Spawning at (0,0).")
 		spawn_position = Vector2.ZERO
+	update_portal_ui()
 
 func _process(delta):
 	if Input.is_action_just_pressed("pause"):
@@ -114,7 +117,7 @@ func _physics_process(delta: float) -> void:
 					entrada_inst.global_position = mouse
 					entrada_inst.rotation = portal_fantasma.rotation
 					
-					# ## <--- NUEVO: Aplicar color al instanciar
+					## Aplicar color al instanciar
 					_aplicar_color_invertido(entrada_inst, portal_fantasma.rotation)
 					
 					entrada = false
@@ -138,6 +141,8 @@ func _physics_process(delta: float) -> void:
 
 					entrada = true
 					cantidad_portales -= 1
+					
+					update_portal_ui()
 					portal_fantasma.rotation = 0.0
 
 		# ======================
@@ -177,3 +182,7 @@ func _aplicar_color_invertido(nodo: Node2D, rotacion: float) -> void:
 	else:
 		# Si no está invertido, color normal (blanco / original)
 		nodo.modulate = Color(1, 1, 1)
+
+func update_portal_ui() -> void:
+	if counter:
+		counter.text = "Portal count: " + str(cantidad_portales)
