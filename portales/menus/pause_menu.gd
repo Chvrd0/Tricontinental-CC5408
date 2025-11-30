@@ -15,9 +15,6 @@ func _ready() -> void:
 	
 	visible = true
 	
-	
-
-
 
 func _on_continue_pressed(): 
 	visible = false
@@ -33,9 +30,3 @@ func _on_main_menu_pressed():
 	get_tree().paused = false
 	LevelManager.go_to_main_menu()
 	
-
-
-func _on_skip_level_button_pressed() -> void:
-	visible = false
-	get_tree().paused = false
-	LevelManager.go_next_level()

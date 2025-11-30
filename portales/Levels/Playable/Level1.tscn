@@ -1,7 +1,8 @@
-[gd_scene load_steps=7 format=4 uid="uid://b431u5xcvvixl"]
+[gd_scene load_steps=8 format=4 uid="uid://b431u5xcvvixl"]
 
 [ext_resource type="Texture2D" uid="uid://lw3a8dvmhh4k" path="res://sprites/world_tileset.png" id="1_iu3ff"]
 [ext_resource type="PackedScene" uid="uid://bf41bhr4pcafq" path="res://Levels/Node/BaseLevel.tscn" id="1_wpvbg"]
+[ext_resource type="PackedScene" uid="uid://bk82us06cwtrf" path="res://menus/coin.tscn" id="3_r11ul"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_iu3ff"]
 texture = ExtResource("1_iu3ff")
@@ -311,3 +312,6 @@ tile_map_data = PackedByteArray("AADc/w8AAAAAAAAAAADd/w8AAAAAAAAAAADe/w8AAAAAAAA
 tile_set = SubResource("TileSet_5bpbm")
 
 [node name="BaseLevel" parent="." instance=ExtResource("1_wpvbg")]
+
+[node name="Coin" parent="." instance=ExtResource("3_r11ul")]
+position = Vector2(589, 229)
