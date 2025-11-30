@@ -8,13 +8,18 @@ extends Node
 
 var current_level = -1
 
+
+
 func go_next_level():
+	print("Loading level ", current_level)
 	current_level += 1
 	if levels.size() > current_level:
+		print("Yes")
 		get_tree().change_scene_to_packed(levels[current_level])
 	else:
 		go_to_credits()
 		
+
 func go_to_main_menu():
 	if main_menu:
 		get_tree().change_scene_to_packed(main_menu)

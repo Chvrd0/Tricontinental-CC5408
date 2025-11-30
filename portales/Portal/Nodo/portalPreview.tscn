@@ -1,10 +1,11 @@
 [gd_scene load_steps=2 format=3 uid="uid://dailc8nhj0xet"]
 
-[ext_resource type="Texture2D" uid="uid://bhr7sic523hxc" path="res://icon.svg" id="1_lhlkq"]
+[ext_resource type="Texture2D" uid="uid://d1kx4dr3jqtcj" path="res://sprites/portal/Dimensional_Portal.png" id="1_lhlkq"]
 
 [node name="PortalPreview" type="Node2D"]
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-modulate = Color(1, 1, 1, 0.5686275)
-scale = Vector2(0.242, 0.242)
+modulate = Color(1, 1, 1, 0.568627)
 texture = ExtResource("1_lhlkq")
+region_enabled = true
+region_rect = Rect2(34.329, -0.117, 32, 32)

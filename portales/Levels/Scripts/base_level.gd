@@ -5,7 +5,7 @@
 ##  - Mover una cámara libremente por el mapa.
 ##  - Posicionar pares de portales (entrada y salida) usando el mouse.
 ##  - Rotar los portales antes de colocarlos.
-##  - Spawnear al jugador en un punto definido una vez terminada la preparación.
+##  - Spawnear al jugador en un nodo definido una vez terminada la preparación.
 
 
 extends Node2D
@@ -26,6 +26,8 @@ var PORTAL_SALIDA = preload("uid://ccnqpatetrj6x")
 
 ## Escena del jugador.
 const PLAYER = preload("uid://cde78dlgk1acq")
+
+const PAUSE_MENU = preload("res://menus/pause_menu.tscn")
 
 
 # ===========================
@@ -69,8 +71,11 @@ var preparacion2: bool = true
 # ==== CONFIGURACIÓN DEL NIVEL ==
 # ===========================
 
-## Punto de aparición del jugador cuando termina la preparación.
-@export var spawn_point: Vector2
+## Nodo (Marker2D) que define dónde aparecerá el jugador.
+@export var spawn_point_node: NodePath
+
+## Almacena la posición del nodo de spawn para usarla luego.
+var spawn_position: Vector2 = Vector2.ZERO  ## <-- ADDED (fixes the errors)
 
 ## Cantidad de pares de portales disponibles para colocar.
 @export var cantidad_portales: int
@@ -91,6 +96,48 @@ var preparacion2: bool = true
 var rotation_step: float = PI / 2
 
 
+
+# ===========================
+# ==== FUNCIONES DE GODOT ====
+# ===========================
+
+## Se llama una vez cuando el nodo entra en la escena.
+func _ready() -> void:
+	# Verificamos si el NodePath de spawn_point_node ha sido asignado en el editor.
+	if not spawn_point_node.is_empty():
+		# Nos aseguramos de que el nodo exista en la escena antes de intentar acceder a él.
+		if has_node(spawn_point_node):
+			# Obtenemos el nodo real (que debe ser un Node2D o derivado).
+			var spawn_node: Node2D = get_node(spawn_point_node)
+			# Guardamos su posición global para usarla al spawnear al jugador.
+			spawn_position = spawn_node.global_position
+		else:
+			# El NodePath fue asignado pero el nodo no se encontró (error en la escena).
+			push_error("Spawn point node not found at path: " + str(spawn_point_node))
+			spawn_position = Vector2.ZERO # Fallback para evitar crasheo.
+	else:
+		# El NodePath no fue asignado en el Inspector.
+		push_warning("Spawn point node not assigned in BaseLevel script. Spawning at (0,0).")
+		spawn_position = Vector2.ZERO # Fallback para evitar crasheo.
+
+
+func _process(delta):
+	# Only allows pausing *after* the preparation phase
+	# and if the game is not already paused.
+	if not preparacion1 and not get_tree().paused:
+		if Input.is_action_just_pressed("pause"):
+			# Pause the game
+			get_tree().paused = true
+			print("PAUSING ---------------------------------")
+			
+			# Create an instance of the pause menu
+			var pause_menu_instance = PAUSE_MENU.instantiate()
+			
+			# Add the menu instance as a child of the current level
+			# This is the correct line:
+			add_child(pause_menu_instance)
+			
+
 # ===========================
 # ==== LÓGICA PRINCIPAL =======
 # ===========================
@@ -102,7 +149,7 @@ var rotation_step: float = PI / 2
 ##   - Se permiten colocar portales y rotarlos.
 ## Cuando `preparacion1` pasa a false:
 ##   - Se esconde el portal fantasma.
-##   - Se instancia el jugador en `spawn_point` (una sola vez).
+##   - Se instancia al jugador en `spawn_position` (una sola vez).
 func _physics_process(delta: float) -> void:
 	if preparacion1:
 		# ======================
@@ -120,10 +167,8 @@ func _physics_process(delta: float) -> void:
 		# ======================
 		# Portal fantasma
 		# ======================
-		# El portal fantasma sigue la posición del mouse.
 		portal_fantasma.global_position = mouse
 
-		# Permite rotar el portal fantasma en pasos de 90° (hacia la derecha).
 		if Input.is_action_just_pressed("rotate_right"):
 			portal_fantasma.rotate(rotation_step)
 
@@ -132,42 +177,29 @@ func _physics_process(delta: float) -> void:
 		# ======================
 		if Input.is_action_just_pressed("click"):
 			if cantidad_portales > 0:
-				# Si toca colocar portal de entrada
 				if entrada:
 					var entrada_inst = PORTAL.instantiate()
 					add_child(entrada_inst)
 					entrada_inst.global_position = mouse
-					# Copiamos la rotación actual del portal fantasma
 					entrada_inst.rotation = portal_fantasma.rotation
 					entrada = false
 				else:
-					# Colocación del portal de salida relacionado al último portal de entrada
 					var entrada_act: Vector2 = get_tree().get_nodes_in_group("portalEntrada")[-1].global_position
-					
-					# Vector desde la entrada hacia donde hizo click el jugador
 					var max_d: Vector2 = mouse - entrada_act
 					var distance: float = max_d.length()
 					var direcc: Vector2 = max_d.normalized()
-					
-					# Limitamos la distancia entre min_dist y max_dist
 					var limit: float = clamp(distance, min_dist, max_dist)
-					
-					# Ajustamos la posición del portal fantasma para respetar ese límite.
+
 					portal_fantasma.global_position = entrada_act + (direcc * limit)
 
-					# Instanciamos el portal de salida
 					var salida_inst = PORTAL_SALIDA.instantiate()
 					add_child(salida_inst)
-					
+
 					salida_inst.global_position = portal_fantasma.global_position
-					# Copiamos también la rotación elegida
 					salida_inst.rotation = portal_fantasma.rotation
 
-					# Reseteamos el estado: vuelve a tocar portal de entrada
 					entrada = true
 					cantidad_portales -= 1
-
-					# Reseteamos la rotación del portal fantasma para el siguiente par.
 					portal_fantasma.rotation = 0.0
 
 		# ======================
@@ -182,7 +214,7 @@ func _physics_process(delta: float) -> void:
 		# Instanciamos al jugador una sola vez en el punto de spawn.
 		if preparacion2:
 			var player = PLAYER.instantiate()
-			player.global_position = spawn_point
+			player.global_position = spawn_position
 			add_child(player)
 			camera.queue_free()
 			preparacion2 = false
