@@ -95,7 +95,7 @@ func _physics_process(delta: float) -> void:
 		camera.velocity.y = move_toward(camera.velocity.y, y_input * max_speed, acceleration * delta)
 		camera.move_and_slide()
 
-		# ======================
+		# ======================	
 		# Portal fantasma
 		# ======================
 		portal_fantasma.global_position = mouse

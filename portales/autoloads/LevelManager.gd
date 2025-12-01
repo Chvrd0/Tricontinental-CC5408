@@ -15,6 +15,7 @@ func go_next_level():
 	current_level += 1
 	if levels.size() > current_level:
 		print("Yes")
+		print("Level", levels[current_level])
 		get_tree().change_scene_to_packed(levels[current_level])
 	else:
 		go_to_credits()

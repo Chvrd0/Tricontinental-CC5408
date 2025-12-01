@@ -298,7 +298,7 @@ texture = ExtResource("1_xx7s1")
 physics_layer_0/collision_layer = 1
 sources/0 = SubResource("TileSetAtlasSource_r11ul")
 
-[node name="Level1" type="Node2D"]
+[node name="Level2" type="Node2D"]
 
 [node name="Mapa" type="Node2D" parent="."]
 

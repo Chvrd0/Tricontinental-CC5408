@@ -3,11 +3,11 @@
 [ext_resource type="Script" uid="uid://b1e2e2fbn0ex0" path="res://autoloads/LevelManager.gd" id="1_stu7j"]
 [ext_resource type="PackedScene" uid="uid://brr50a6ysysle" path="res://menus/main_menu.tscn" id="2_gn3j0"]
 [ext_resource type="PackedScene" uid="uid://ct2cjac7hf2ff" path="res://menus/credits.tscn" id="3_gty5d"]
-[ext_resource type="PackedScene" uid="uid://b431u5xcvvixl" path="res://Levels/Playable/Level1.tscn" id="4_gn3j0"]
 [ext_resource type="PackedScene" uid="uid://dhamu7upovcgk" path="res://Levels/Playable/Level2.tscn" id="5_gn3j0"]
+[ext_resource type="PackedScene" uid="uid://0s170wypu8bf" path="res://Levels/Playable/tutorial_retry.tscn" id="5_gty5d"]
 
 [node name="LevelManager" type="Node"]
 script = ExtResource("1_stu7j")
 main_menu = ExtResource("2_gn3j0")
 credits = ExtResource("3_gty5d")
-levels = Array[PackedScene]([ExtResource("4_gn3j0"), ExtResource("5_gn3j0")])
+levels = Array[PackedScene]([ExtResource("5_gty5d"), ExtResource("5_gn3j0")])
