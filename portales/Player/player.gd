@@ -57,6 +57,9 @@ var gravity_direction: Vector2 = Vector2.DOWN
 ## Referencia a la cámara, inicialmente desactivada
 @onready var camera_2d: Camera2D = $Camera2D
 
+@onready var character: Player = $"."
+
+
 
 # ===========================
 # ==== FUNCIONES PRINCIPALES ====
@@ -141,3 +144,12 @@ func actualizar_rotacion_visual() -> void:
 	# Calculamos el ángulo del vector “arriba” (-gravity_direction)
 	# y le sumamos 90 grados (PI/2) porque la rotación cero apunta hacia la derecha.
 	self.rotation = (-gravity_direction).angle() + (PI / 2)
+	
+# ===========================
+# ==== LÓGICA DE MUERTE ====
+# ===========================
+func destroy():
+	visible = false
+	max_speed=0
+	gravity_force=0
+	character.queue_free()

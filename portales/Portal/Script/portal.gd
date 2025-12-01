@@ -78,6 +78,8 @@ func play_zap() -> void:
 ##
 ## @param area El área que ha ingresado (generalmente un Area2D del jugador).
 func _on_area_2d_area_entered(area: Area2D) -> void:
+	if not is_instance_valid(area):
+		return
 	# Verificamos si el objeto que entra pertenece al grupo "player"
 	if area.get_parent().is_in_group("player"):
 		var player = area.get_parent()

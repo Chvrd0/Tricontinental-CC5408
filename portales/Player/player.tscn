@@ -1,9 +1,10 @@
-[gd_scene load_steps=18 format=3 uid="uid://cde78dlgk1acq"]
+[gd_scene load_steps=19 format=3 uid="uid://cde78dlgk1acq"]
 
 [ext_resource type="Script" uid="uid://u2mcj52ixqjs" path="res://Player/player.gd" id="1_4ntmi"]
 [ext_resource type="Texture2D" uid="uid://d3jraieq2cpdr" path="res://sprites/female/mort/base/idle.png" id="2_btcbx"]
 [ext_resource type="Texture2D" uid="uid://bj5uppgthqr12" path="res://sprites/female/mort/base/move.png" id="3_btcbx"]
 [ext_resource type="Texture2D" uid="uid://cqm0kj8rhjexy" path="res://sprites/female/mort/base/jump.png" id="4_gwnis"]
+[ext_resource type="Script" uid="uid://3f0jhmjkjy0l" path="res://Player/hurtbox.gd" id="5_k53q1"]
 
 [sub_resource type="Animation" id="Animation_k53q1"]
 length = 0.001
@@ -228,9 +229,12 @@ texture_filter = 1
 texture = ExtResource("2_btcbx")
 hframes = 6
 
-[node name="hitboxPortal" type="Area2D" parent="."]
+[node name="Hurtbox" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 2
+script = ExtResource("5_k53q1")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="hitboxPortal"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
 position = Vector2(0, 4.5)
 shape = SubResource("RectangleShape2D_gwnis")
 

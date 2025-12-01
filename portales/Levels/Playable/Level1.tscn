@@ -1,8 +1,9 @@
-[gd_scene load_steps=9 format=4 uid="uid://b431u5xcvvixl"]
+[gd_scene load_steps=10 format=4 uid="uid://b431u5xcvvixl"]
 
 [ext_resource type="Texture2D" uid="uid://lw3a8dvmhh4k" path="res://sprites/world_tileset.png" id="1_iu3ff"]
 [ext_resource type="PackedScene" uid="uid://bf41bhr4pcafq" path="res://Levels/Node/BaseLevel.tscn" id="1_wpvbg"]
 [ext_resource type="PackedScene" uid="uid://bk82us06cwtrf" path="res://menus/coin.tscn" id="3_r11ul"]
+[ext_resource type="PackedScene" uid="uid://22wmr15yje6l" path="res://hitbox.tscn" id="4_5bpbm"]
 
 [sub_resource type="GDScript" id="GDScript_r11ul"]
 script/source = "extends Label
@@ -328,7 +329,7 @@ spawn_point_node = NodePath("../PlayerSpawn")
 position = Vector2(589, 229)
 
 [node name="PlayerSpawn" type="Marker2D" parent="."]
-position = Vector2(-371, 224)
+position = Vector2(255, 225)
 
 [node name="Label" type="Label" parent="PlayerSpawn"]
 offset_left = -90.0
@@ -336,3 +337,6 @@ offset_top = -45.0
 offset_right = 7.0
 offset_bottom = -22.0
 text = "Spawn point"
+
+[node name="Hitbox" parent="." instance=ExtResource("4_5bpbm")]
+position = Vector2(183, -46)
