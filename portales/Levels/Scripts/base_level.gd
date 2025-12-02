@@ -23,6 +23,7 @@ const PAUSE_MENU = preload("res://menus/pause_menu.tscn")
 @onready var portal_fantasma: Node2D = $PortalFantasma
 @onready var counter: Label = $Counter
 
+var ghost_arrow_ref: Node2D
 
 # ===========================
 # ==== PARÁMETROS EXPORTADOS ==
@@ -69,6 +70,12 @@ func _ready() -> void:
 	else:
 		push_warning("Spawn point node not assigned. Spawning at (0,0).")
 		spawn_position = Vector2.ZERO
+	var ArrowScript = load("res://Levels/Scripts/gravity_arrow.gd")
+	if ArrowScript:
+		ghost_arrow_ref = ArrowScript.new()
+		if portal_fantasma:
+			portal_fantasma.add_child(ghost_arrow_ref)
+			ghost_arrow_ref.visible = false 
 	update_portal_ui()
 
 func _process(delta):
@@ -77,6 +84,9 @@ func _process(delta):
 		print("PAUSING ---------------------------------")
 		var pause_menu_instance = PAUSE_MENU.instantiate()
 		add_child(pause_menu_instance)
+		
+	if is_instance_valid(ghost_arrow_ref):
+		ghost_arrow_ref.visible = (not entrada) and preparacion1
 
 # ===========================
 # ==== LÓGICA PRINCIPAL =======
