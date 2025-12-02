@@ -13,15 +13,20 @@ const MUSIC_MENU = preload("res://musica/Spining_Cat.mp3")
 const MUSIC_TUTORIAL = preload("res://musica/イッツ・ア・ヘンテコワールド.mp3") 
 # Song 3: Level 2 (Index 1)
 const MUSIC_LEVEL2 = preload("res://musica/ピコピコ・リパブリック賛歌_-_8bit.mp3")
-
+const MUSIC_LEVEL3 = preload("res://musica/ピコピコディスコ_-_8bit_2.mp3")
 # --- Internal Variables ---
 var current_level = -1
 var music_player: AudioStreamPlayer
 
 func play_music(stream: AudioStream):
-	# If the requested song is already playing, don't restart it
+
 	if music_player.stream == stream and music_player.playing:
 		return 
+	
+	#loop
+	if stream is AudioStreamMP3:
+		stream.loop = true
+
 	
 	music_player.stream = stream
 	music_player.play()
@@ -54,6 +59,8 @@ func go_next_level():
 		elif current_level == 1:
 			# Array [1] is Level 2
 			play_music(MUSIC_LEVEL2)
+		elif current_level == 2:
+			play_music(MUSIC_LEVEL3)
 	else:
 		go_to_credits()
 

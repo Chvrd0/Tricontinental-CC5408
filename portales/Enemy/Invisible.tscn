@@ -123,7 +123,7 @@ radius = 5.0
 height = 18.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qtpjc"]
-size = Vector2(158, 20)
+size = Vector2(1291, 20.075)
 
 [node name="Invisible" type="CharacterBody2D"]
 motion_mode = 1

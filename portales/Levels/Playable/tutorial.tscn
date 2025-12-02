@@ -45,18 +45,49 @@ position = Vector2(-953, -121)
 rotation = 1.5708
 scale = Vector2(10, 2)
 
-[node name="Invisible4" parent="." index="6" instance=ExtResource("5_xmjkx")]
-position = Vector2(1187, -62)
+[node name="Hurtbox" parent="Invisible" index="2"]
+scale = Vector2(10, 2)
+
+[node name="Invisible2" parent="." index="6" instance=ExtResource("5_xmjkx")]
+position = Vector2(-953, -121)
 rotation = 1.5708
 scale = Vector2(10, 2)
 
-[node name="Invisible2" parent="." index="7" instance=ExtResource("5_xmjkx")]
-position = Vector2(414, -770)
-scale = Vector2(20, 2)
+[node name="Hurtbox" parent="Invisible2" index="2"]
+scale = Vector2(10, 2)
 
-[node name="Invisible3" parent="." index="8" instance=ExtResource("5_xmjkx")]
-position = Vector2(435, 607)
-scale = Vector2(20, 2)
+[node name="CollisionShape2D" parent="Invisible2/PlayerDetection" index="0"]
+position = Vector2(-62.275, -666.5)
+rotation = 1.5708
+
+[node name="Invisible3" parent="." index="7" instance=ExtResource("5_xmjkx")]
+position = Vector2(-953, -121)
+rotation = 1.5708
+scale = Vector2(10, 2)
+
+[node name="Hurtbox" parent="Invisible3" index="2"]
+scale = Vector2(10, 2)
+
+[node name="CollisionShape2D" parent="Invisible3/PlayerDetection" index="0"]
+position = Vector2(2.29999, -1286)
+scale = Vector2(10, 2)
+
+[node name="Invisible4" parent="." index="8" instance=ExtResource("5_xmjkx")]
+position = Vector2(-953, -121)
+rotation = 1.5708
+scale = Vector2(10, 2)
+
+[node name="Hurtbox" parent="Invisible4" index="2"]
+scale = Vector2(10, 2)
+
+[node name="CollisionShape2D" parent="Invisible4/PlayerDetection" index="0"]
+position = Vector2(97.2, -623.5)
+rotation = 1.5708
+scale = Vector2(10, 2)
 
 [editable path="TutorialUI"]
 [editable path="Level1"]
+[editable path="Invisible"]
+[editable path="Invisible2"]
+[editable path="Invisible3"]
+[editable path="Invisible4"]
