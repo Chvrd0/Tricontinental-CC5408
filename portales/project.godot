@@ -19,6 +19,11 @@ config/icon="res://icon.svg"
 
 LevelManager="*res://autoloads/level_manager.tscn"
 
+[display]
+
+window/size/mode=3
+window/stretch/mode="viewport"
+
 [global_group]
 
 portalEntrada=""
