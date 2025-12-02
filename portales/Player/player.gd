@@ -60,7 +60,9 @@ var gravity_direction: Vector2 = Vector2.DOWN
 @onready var character: Player = $"."
 
 
-
+# --- Audio ---
+@onready var sfx_jump: AudioStreamPlayer = AudioStreamPlayer.new()
+const JUMP_SOUND = preload("res://musica/SFX[1]/SFX/Jump 1.wav")
 # ===========================
 # ==== FUNCIONES PRINCIPALES ====
 # ===========================
@@ -74,6 +76,10 @@ func _ready() -> void:
 	
 	# Activa la cámara del jugador
 	camera_2d.enabled = true
+	
+	sfx_jump.stream = JUMP_SOUND
+	sfx_jump.volume_db = -5.0 
+	add_child(sfx_jump)
 
 
 ## Se ejecuta en cada frame de física (60 fps por defecto)
@@ -119,6 +125,7 @@ func _physics_process(delta: float) -> void:
 	# ====== SALTO ======
 	if is_on_floor() and Input.is_action_just_pressed("jump"):
 		velocity = -gravity_direction * jump_speed
+		sfx_jump.play()
 
 
 # ===========================

@@ -334,7 +334,7 @@ position = Vector2(80, 36)
 position = Vector2(-161, 214)
 
 [node name="Invisible" parent="." instance=ExtResource("5_6mc8r")]
-position = Vector2(-364.99997, 336)
+position = Vector2(-365, 336)
 scale = Vector2(100, 1)
 
 [node name="Invisible2" parent="." instance=ExtResource("5_6mc8r")]

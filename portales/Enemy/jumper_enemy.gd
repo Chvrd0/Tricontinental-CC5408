@@ -28,6 +28,12 @@ var direction: int = 1
 var player: CharacterBody2D = null
 var start_position: Vector2 # <--- NEW
 
+
+# --- Audio ---
+@onready var sfx_jump: AudioStreamPlayer2D = AudioStreamPlayer2D.new()
+# Use Jump 2 for the enemy to distinguish it from the player
+const JUMP_SOUND = preload("res://musica/SFX[1]/SFX/Jump 2.wav")
+
 # --- Godot Functions ---
 
 func _ready() -> void:
@@ -35,6 +41,9 @@ func _ready() -> void:
 	start_position = global_position # <--- NEW: Remember where we started
 	jump_timer.wait_time = patrol_jump_delay
 	jump_timer.start()
+	
+	sfx_jump.stream = JUMP_SOUND
+	add_child(sfx_jump)
 
 func _physics_process(delta: float) -> void:
 	# --- 1. Apply Gravity ---
@@ -105,6 +114,8 @@ func _jump_if_ready(horizontal_direction: int) -> void:
 	if is_on_floor() and jump_timer.is_stopped():
 		velocity.y = -jump_force
 		velocity.x = horizontal_direction * speed
+		
+		sfx_jump.play()
 		jump_timer.start() # Restart the one-shot timer
 
 func _update_animation() -> void:

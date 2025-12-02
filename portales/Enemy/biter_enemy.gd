@@ -25,6 +25,10 @@ var current_state: State = State.PATROL
 var direction: int = 1
 var player: CharacterBody2D = null
 
+# --- Audio ---
+@onready var sfx_bite: AudioStreamPlayer2D = AudioStreamPlayer2D.new()
+const BITE_SOUND = preload("res://musica/SFX[1]/SFX/Chomp.wav")
+
 # --- Godot Functions ---
 
 func _ready() -> void:
@@ -32,6 +36,9 @@ func _ready() -> void:
 	
 	# Keep the attack range enabled for detection
 	attack_range_shape.disabled = false
+	
+	sfx_bite.stream = BITE_SOUND
+	add_child(sfx_bite)
 	
 	# Set initial direction based on how you placed it in the editor
 	if animated_sprite.flip_h:
@@ -101,6 +108,7 @@ func _attack_state(delta: float) -> void:
 	# Play bite animation and start cooldown
 	if attack_timer.is_stopped():
 		animated_sprite.play("bite")
+		sfx_bite.play()
 		attack_timer.start()
 		# --- DAMAGE IS MOVED. We wait for the timer to finish. ---
 

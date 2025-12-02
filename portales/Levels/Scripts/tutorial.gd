@@ -93,6 +93,15 @@ func _handle_ghost_update():
 	if current_state == State.COLLECT: return
 	
 	var mouse = get_global_mouse_position()
+	var current_color = Color.WHITE # Default
+	
+	# Determine color based on state
+	if current_state == State.PLACE_ENTRY_1:
+		current_color = COLOR_ENTRADA
+	elif current_state == State.PLACE_EXIT_1:
+		current_color = COLOR_SALIDA
+	elif current_state == State.FREE_PLACEMENT:
+		current_color = COLOR_ENTRADA if entrada else COLOR_SALIDA
 	
 	# Clamp distance logic for Exits
 	if (current_state == State.PLACE_EXIT_1 or (current_state == State.FREE_PLACEMENT and not entrada)):
@@ -109,18 +118,27 @@ func _handle_ghost_update():
 	else:
 		portal_fantasma.global_position = mouse
 	
-	_aplicar_color_invertido(portal_fantasma, portal_fantasma.rotation)
+	# Pass the color to the base function
+	_aplicar_color_invertido(portal_fantasma, portal_fantasma.rotation, current_color)
 
 func _rotate_ghost():
 	portal_fantasma.rotate(rotation_step)
-	_aplicar_color_invertido(portal_fantasma, portal_fantasma.rotation)
+	# Determine color again for the rotation update
+	var current_color = COLOR_ENTRADA
+	if current_state == State.PLACE_EXIT_1: 
+		current_color = COLOR_SALIDA
+	elif current_state == State.FREE_PLACEMENT and not entrada:
+		current_color = COLOR_SALIDA
+		
+	_aplicar_color_invertido(portal_fantasma, portal_fantasma.rotation, current_color)
 
 func _place_entry_portal():
 	var entrada_inst = PORTAL.instantiate()
 	add_child(entrada_inst)
 	entrada_inst.global_position = portal_fantasma.global_position
 	entrada_inst.rotation = portal_fantasma.rotation
-	_aplicar_color_invertido(entrada_inst, portal_fantasma.rotation)
+	# Pass COLOR_ENTRADA (Orange)
+	_aplicar_color_invertido(entrada_inst, portal_fantasma.rotation, COLOR_ENTRADA)
 	entrada = false 
 
 func _place_exit_portal():
@@ -128,7 +146,8 @@ func _place_exit_portal():
 	add_child(salida_inst)
 	salida_inst.global_position = portal_fantasma.global_position
 	salida_inst.rotation = portal_fantasma.rotation
-	_aplicar_color_invertido(salida_inst, portal_fantasma.rotation)
+	# Pass COLOR_SALIDA (Blue)
+	_aplicar_color_invertido(salida_inst, portal_fantasma.rotation, COLOR_SALIDA)
 	entrada = true
 	cantidad_portales -= 1
 	update_portal_ui()
