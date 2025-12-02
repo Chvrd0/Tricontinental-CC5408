@@ -8,6 +8,6 @@
 
 [node name="LevelManager" type="Node"]
 script = ExtResource("1_stu7j")
+levels = Array[PackedScene]([ExtResource("4_gn3j0"), ExtResource("5_gn3j0")])
 main_menu = ExtResource("2_gn3j0")
 credits = ExtResource("3_gty5d")
-levels = Array[PackedScene]([ExtResource("4_gn3j0"), ExtResource("5_gn3j0")])

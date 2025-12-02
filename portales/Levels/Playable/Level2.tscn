@@ -336,12 +336,12 @@ position = Vector2(183, 180)
 position = Vector2(-161, 214)
 
 [node name="Invisible" parent="." instance=ExtResource("5_6mc8r")]
-position = Vector2(-364.99997, 336)
+position = Vector2(-365, 336)
 scale = Vector2(100, 1)
 
 [node name="Invisible2" parent="." instance=ExtResource("5_6mc8r")]
 position = Vector2(-784, 220)
-rotation = 1.5707964
+rotation = 1.5708
 scale = Vector2(50, 1)
 
 [node name="Invisible3" parent="." instance=ExtResource("5_6mc8r")]
@@ -350,5 +350,5 @@ scale = Vector2(100, 1)
 
 [node name="Invisible4" parent="." instance=ExtResource("5_6mc8r")]
 position = Vector2(732, 251)
-rotation = -1.5707964
+rotation = -1.5708
 scale = Vector2(50, 1)

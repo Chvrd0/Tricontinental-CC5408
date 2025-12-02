@@ -15,6 +15,10 @@ var PORTAL_SALIDA = preload("uid://ccnqpatetrj6x")
 const PLAYER = preload("uid://cde78dlgk1acq")
 const PAUSE_MENU = preload("res://menus/pause_menu.tscn")
 
+# --- COLORES DEFINIDOS ---
+var COLOR_ENTRADA = Color("ff7700") # Orange
+var COLOR_SALIDA = Color("0099ff")  # Blue
+
 # ===========================
 # ==== REFERENCIAS DE NODOS ==
 # ===========================
@@ -108,13 +112,29 @@ func _physics_process(delta: float) -> void:
 		# ======================	
 		# Portal fantasma
 		# ======================
+		# 1. Posicionamiento por defecto (donde está el mouse)
 		portal_fantasma.global_position = mouse
 
+		# 2. Lógica de CLAMP (Restricción) si es una SALIDA
+		if not entrada:
+			var entradas = get_tree().get_nodes_in_group("portalEntrada")
+			if entradas.size() > 0:
+				var entrada_act: Vector2 = entradas[-1].global_position
+				var max_d: Vector2 = mouse - entrada_act
+				var distance: float = max_d.length()
+				var direcc: Vector2 = max_d.normalized()
+				
+				# Aplicamos el límite visualmente
+				var limit: float = clamp(distance, min_dist, max_dist)
+				portal_fantasma.global_position = entrada_act + (direcc * limit)
+
+		# 3. Rotación
 		if Input.is_action_just_pressed("rotate_right"):
 			portal_fantasma.rotate(rotation_step)
 		
-		# ## <--- NUEVO: Actualizamos el color del fantasma en tiempo real
-		_aplicar_color_invertido(portal_fantasma, portal_fantasma.rotation)
+		# 4. Color
+		var color_actual = COLOR_ENTRADA if entrada else COLOR_SALIDA
+		_aplicar_color_invertido(portal_fantasma, portal_fantasma.rotation, color_actual)
 
 		# ======================
 		# Colocación de portales
@@ -122,32 +142,27 @@ func _physics_process(delta: float) -> void:
 		if Input.is_action_just_pressed("click"):
 			if cantidad_portales > 0:
 				if entrada:
+					# --- Colocar Entrada ---
 					var entrada_inst = PORTAL.instantiate()
 					add_child(entrada_inst)
-					entrada_inst.global_position = mouse
+					entrada_inst.global_position = portal_fantasma.global_position # Usamos la pos del fantasma
 					entrada_inst.rotation = portal_fantasma.rotation
 					
-					## Aplicar color al instanciar
-					_aplicar_color_invertido(entrada_inst, portal_fantasma.rotation)
+					_aplicar_color_invertido(entrada_inst, portal_fantasma.rotation, COLOR_ENTRADA)
 					
 					entrada = false
 				else:
-					var entrada_act: Vector2 = get_tree().get_nodes_in_group("portalEntrada")[-1].global_position
-					var max_d: Vector2 = mouse - entrada_act
-					var distance: float = max_d.length()
-					var direcc: Vector2 = max_d.normalized()
-					var limit: float = clamp(distance, min_dist, max_dist)
-
-					portal_fantasma.global_position = entrada_act + (direcc * limit)
-
+					# --- Colocar Salida ---
+					# Ya calculamos la posición válida arriba (en el bloque fantasma),
+					# así que podemos usar portal_fantasma.global_position directamente.
+					
 					var salida_inst = PORTAL_SALIDA.instantiate()
 					add_child(salida_inst)
 
 					salida_inst.global_position = portal_fantasma.global_position
 					salida_inst.rotation = portal_fantasma.rotation
 					
-					# ## <--- NUEVO: Aplicar color al instanciar
-					_aplicar_color_invertido(salida_inst, portal_fantasma.rotation)
+					_aplicar_color_invertido(salida_inst, portal_fantasma.rotation, COLOR_SALIDA)
 
 					entrada = true
 					cantidad_portales -= 1
@@ -174,24 +189,8 @@ func _physics_process(delta: float) -> void:
 # ==== FUNCIONES AUXILIARES ====
 # ===========================
 
-## Verifica la rotación y cambia el color si está invertido (180 grados).
-func _aplicar_color_invertido(nodo: Node2D, rotacion: float) -> void:
-	# Normalizamos la rotación a un rango de 0 a 2*PI (0 a 360 grados)
-	# para evitar problemas si rotas muchas veces.
-	var rot_norm = wrapf(rotacion, 0, TAU)
-	
-	# PI es 180 grados. Usamos is_equal_approx porque los floats nunca son exactos.
-	# Si está rotado 180 grados (mirando abajo/invertido en Y localmente):
-	if is_equal_approx(rot_norm, PI):
-		# Opción A: Inversión matemática de color (ej. blanco -> negro)
-		nodo.modulate = Color(0, 1, 1).inverted()
-	elif is_equal_approx(rot_norm, 0.5*PI):
-		nodo.modulate = Color(1, 0.6, 0)
-	elif is_equal_approx(rot_norm, 1.5*PI):
-		nodo.modulate = Color(1, 0.6, 0).inverted()
-	else:
-		# Si no está invertido, color normal (blanco / original)
-		nodo.modulate = Color(1, 1, 1)
+func _aplicar_color_invertido(nodo: Node2D, rotacion: float, color_base: Color) -> void:
+	nodo.modulate = color_base
 
 func update_portal_ui() -> void:
 	if counter:
