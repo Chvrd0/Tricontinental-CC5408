@@ -1,10 +1,11 @@
-[gd_scene load_steps=10 format=4 uid="uid://bdx52cymbfrab"]
+[gd_scene load_steps=11 format=4 uid="uid://bdx52cymbfrab"]
 
 [ext_resource type="Texture2D" uid="uid://lw3a8dvmhh4k" path="res://sprites/world_tileset.png" id="1_wv4dd"]
 [ext_resource type="PackedScene" uid="uid://bf41bhr4pcafq" path="res://Levels/Node/BaseLevel.tscn" id="1_yet85"]
 [ext_resource type="PackedScene" uid="uid://bk82us06cwtrf" path="res://menus/coin.tscn" id="3_1r3ue"]
 [ext_resource type="PackedScene" uid="uid://oxwfderyk7nn" path="res://Enemy/biter_enemy.tscn" id="4_x2la1"]
 [ext_resource type="PackedScene" uid="uid://c840edghwqhnb" path="res://Enemy/jumper_enemy.tscn" id="5_b6nk5"]
+[ext_resource type="PackedScene" uid="uid://cgjtyw6ovumpt" path="res://Enemy/Invisible.tscn" id="6_x2la1"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_36ryg"]
 texture = ExtResource("1_wv4dd")
@@ -157,11 +158,11 @@ texture = ExtResource("1_wv4dd")
 7:0/0 = 0
 8:0/0 = 0
 9:0/0 = 0
-9:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -6.115196, 8, -0.17985725, -8, -1.4388695)
+9:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -6.1152, 8, -0.179857, -8, -1.43887)
 10:0/0 = 0
-10:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -5.755479, 8, -5.935337, 8, 0.8992939, -8, 1.0791531)
+10:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -5.75548, 8, -5.93534, 8, 0.899294, -8, 1.07915)
 11:0/0 = 0
-11:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -6.2950544, 8, -8, 8, -1.4388695, -8, 0.35971832)
+11:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -6.29505, 8, -8, 8, -1.43887, -8, 0.359718)
 0:1/0 = 0
 0:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 1:1/0 = 0
@@ -178,11 +179,11 @@ texture = ExtResource("1_wv4dd")
 7:1/0 = 0
 8:1/0 = 0
 9:1/0 = 0
-9:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -6.115196, 8, -0.17985725, -8, -1.4388695)
+9:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -6.1152, 8, -0.179857, -8, -1.43887)
 10:1/0 = 0
-10:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -5.755479, 8, -5.935337, 8, 0.8992939, -8, 1.0791531)
+10:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -5.75548, 8, -5.93534, 8, 0.899294, -8, 1.07915)
 11:1/0 = 0
-11:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -6.2950544, 8, -8, 8, -1.4388695, -8, 0.35971832)
+11:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -6.29505, 8, -8, 8, -1.43887, -8, 0.359718)
 0:2/0 = 0
 1:2/0 = 0
 2:2/0 = 0
@@ -292,6 +293,7 @@ physics_layer_0/collision_layer = 1
 sources/0 = SubResource("TileSetAtlasSource_1r3ue")
 
 [node name="Level3" type="Node2D"]
+position = Vector2(-19, 1)
 
 [node name="mapa" type="Node2D" parent="."]
 
@@ -326,3 +328,23 @@ position = Vector2(1281, 125)
 
 [node name="JumperEnemy" parent="." instance=ExtResource("5_b6nk5")]
 position = Vector2(-113, 223)
+
+[node name="Invisible" parent="." instance=ExtResource("6_x2la1")]
+visible = true
+position = Vector2(-396, 243)
+scale = Vector2(-1, -1)
+
+[node name="Invisible2" parent="." instance=ExtResource("6_x2la1")]
+visible = true
+position = Vector2(-378, 243)
+scale = Vector2(-1, -1)
+
+[node name="Invisible3" parent="." instance=ExtResource("6_x2la1")]
+visible = true
+position = Vector2(-363, 243)
+scale = Vector2(-1, -1)
+
+[node name="Invisible4" parent="." instance=ExtResource("6_x2la1")]
+visible = true
+position = Vector2(-349, 243)
+scale = Vector2(-1, -1)

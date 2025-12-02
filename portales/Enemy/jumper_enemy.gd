@@ -1,3 +1,4 @@
+class_name Jumper
 extends CharacterBody2D
 
 # --- Variables ---
