@@ -1,8 +1,11 @@
 extends Node
+const LEVEL_1 = preload("uid://b431u5xcvvixl")
+const LEVEL_2 = preload("uid://dhamu7upovcgk")
+const LEVEL_RRE = preload("uid://bdx52cymbfrab")
 
 @export var main_menu: PackedScene
 @export var credits: PackedScene
-@export var levels: Array[PackedScene] = []
+@export var levels: Array[PackedScene] = [LEVEL_1, LEVEL_2, LEVEL_RRE]
 
 
 
