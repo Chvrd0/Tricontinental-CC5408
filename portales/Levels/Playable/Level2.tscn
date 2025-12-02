@@ -339,16 +339,16 @@ scale = Vector2(100, 1)
 
 [node name="Invisible2" parent="." instance=ExtResource("5_6mc8r")]
 position = Vector2(-785, 74)
-rotation = 1.5707964
+rotation = 1.5708
 scale = Vector2(50, 1)
 
 [node name="Invisible3" parent="." instance=ExtResource("5_6mc8r")]
-position = Vector2(598, -188)
-scale = Vector2(1000, 1)
+position = Vector2(584, -315)
+scale = Vector2(1440.6, 0.88421)
 
 [node name="Invisible4" parent="." instance=ExtResource("5_6mc8r")]
 position = Vector2(1706, 71)
-rotation = -1.5707964
+rotation = -1.5708
 scale = Vector2(50, 1)
 
 [node name="JumperEnemy" parent="." instance=ExtResource("6_07flq")]

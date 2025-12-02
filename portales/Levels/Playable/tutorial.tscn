@@ -1,9 +1,10 @@
-[gd_scene load_steps=6 format=4 uid="uid://d0qegtkmdw1in"]
+[gd_scene load_steps=7 format=4 uid="uid://d0qegtkmdw1in"]
 
 [ext_resource type="PackedScene" uid="uid://bf41bhr4pcafq" path="res://Levels/Node/BaseLevel.tscn" id="1_na6ak"]
 [ext_resource type="Script" uid="uid://2n11uj23gsns" path="res://Levels/Scripts/tutorial.gd" id="2_t37nk"]
 [ext_resource type="PackedScene" uid="uid://hddg1h0gxhqo" path="res://Levels/Node/tutorial_ui.tscn" id="3_1yd8j"]
 [ext_resource type="PackedScene" uid="uid://b431u5xcvvixl" path="res://Levels/Playable/Level1.tscn" id="3_8b00y"]
+[ext_resource type="PackedScene" uid="uid://cgjtyw6ovumpt" path="res://Enemy/Invisible.tscn" id="5_xmjkx"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_8b00y"]
 
@@ -38,6 +39,23 @@ metadata/_edit_lock_ = true
 
 [node name="Coin" parent="Level1" index="2"]
 position = Vector2(459, 29)
+
+[node name="PlayerSpawn" parent="Level1" index="3"]
+position = Vector2(59, 107)
+
+[node name="Invisible" parent="." index="5" instance=ExtResource("5_xmjkx")]
+position = Vector2(-583, 199)
+rotation = -1.5708
+scale = Vector2(1000, 1)
+
+[node name="Invisible3" parent="." index="6" instance=ExtResource("5_xmjkx")]
+position = Vector2(815, 200)
+rotation = 1.5708
+scale = Vector2(1000, 1)
+
+[node name="Invisible2" parent="." index="7" instance=ExtResource("5_xmjkx")]
+position = Vector2(3, -497)
+scale = Vector2(1000, 1)
 
 [editable path="TutorialUI"]
 [editable path="Level1"]
