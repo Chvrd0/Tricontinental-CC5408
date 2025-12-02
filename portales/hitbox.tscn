@@ -1,6 +1,6 @@
-[gd_scene load_steps=3 format=3 uid="uid://22wmr15yje6l"]
+[gd_scene load_steps=3 format=3 uid="uid://cii4m0xxffwj6"]
 
-[ext_resource type="Script" uid="uid://dbhm1drtyoobt" path="res://hitbox.gd" id="1_orx6n"]
+[ext_resource type="Script" path="res://hitbox.gd" id="1_orx6n"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xrojb"]
 

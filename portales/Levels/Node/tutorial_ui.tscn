@@ -3,10 +3,15 @@
 [node name="TutorialUI" type="CanvasLayer"]
 
 [node name="PanelContainer" type="PanelContainer" parent="."]
-offset_left = -68.0
-offset_top = -106.0
-offset_right = 69.0
-offset_bottom = -66.0
+anchors_preset = -1
+anchor_left = 0.411
+anchor_top = -0.037
+anchor_right = 0.411
+anchor_bottom = -0.037
+offset_left = -68.472
+offset_top = -20.024
+offset_right = 68.528
+offset_bottom = 19.976
 
 [node name="Label" type="Label" parent="PanelContainer"]
 layout_mode = 2
