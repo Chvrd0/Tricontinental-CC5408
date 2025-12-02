@@ -338,13 +338,22 @@ position = Vector2(-365, 336)
 scale = Vector2(100, 1)
 
 [node name="Invisible2" parent="." instance=ExtResource("5_6mc8r")]
+<<<<<<< HEAD
 position = Vector2(-785, 74)
+=======
+position = Vector2(-1020, 71)
+>>>>>>> fc58ee508ee4fce72fafc6cd3cd64260375e0bdd
 rotation = 1.5708
 scale = Vector2(50, 1)
 
 [node name="Invisible3" parent="." instance=ExtResource("5_6mc8r")]
+<<<<<<< HEAD
 position = Vector2(584, -315)
 scale = Vector2(1440.6, 0.88421)
+=======
+position = Vector2(596, -627)
+scale = Vector2(1000, 1)
+>>>>>>> fc58ee508ee4fce72fafc6cd3cd64260375e0bdd
 
 [node name="Invisible4" parent="." instance=ExtResource("5_6mc8r")]
 position = Vector2(1706, 71)

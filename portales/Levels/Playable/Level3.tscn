@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=4 uid="uid://bdx52cymbfrab"]
+[gd_scene load_steps=12 format=4 uid="uid://bdk6i7jc1dao5"]
 
 [ext_resource type="PackedScene" uid="uid://bf41bhr4pcafq" path="res://Levels/Node/BaseLevel.tscn" id="1_fafj3"]
 [ext_resource type="Texture2D" uid="uid://lw3a8dvmhh4k" path="res://sprites/world_tileset.png" id="2_gq2ex"]
@@ -324,18 +324,18 @@ position = Vector2(614, 581)
 scale = Vector2(1000, 1)
 
 [node name="Invisible2" parent="Mapa" instance=ExtResource("6_ebw0d")]
-position = Vector2(-967, 16.000002)
-rotation = 1.5707964
+position = Vector2(-967, 16)
+rotation = 1.5708
 scale = Vector2(1000, 1)
 
 [node name="Invisible3" parent="Mapa" instance=ExtResource("6_ebw0d")]
 position = Vector2(2184, 239)
-rotation = -1.5707964
+rotation = -1.5708
 scale = Vector2(1000, 1)
 
 [node name="Invisible4" parent="Mapa" instance=ExtResource("6_ebw0d")]
-position = Vector2(699.00006, -658)
-rotation = 3.1415927
+position = Vector2(699, -658)
+rotation = 3.14159
 scale = Vector2(1000, 1)
 
 [node name="Marker2D" type="Marker2D" parent="."]
