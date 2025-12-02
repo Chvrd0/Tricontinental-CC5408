@@ -1,0 +1,39 @@
+[gd_scene load_steps=6 format=3 uid="uid://d0qegtkmdw1in"]
+
+[ext_resource type="PackedScene" uid="uid://bf41bhr4pcafq" path="res://Levels/Node/BaseLevel.tscn" id="1_na6ak"]
+[ext_resource type="Script" uid="uid://2n11uj23gsns" path="res://Levels/Scripts/tutorial.gd" id="2_t37nk"]
+[ext_resource type="PackedScene" uid="uid://hddg1h0gxhqo" path="res://Levels/Node/tutorial_ui.tscn" id="3_1yd8j"]
+[ext_resource type="PackedScene" uid="uid://b431u5xcvvixl" path="res://Levels/Playable/Level1.tscn" id="3_8b00y"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_8b00y"]
+
+[node name="Tutorial" instance=ExtResource("1_na6ak")]
+script = ExtResource("2_t37nk")
+cantidad_portales = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Camera" index="1"]
+shape = SubResource("CircleShape2D_8b00y")
+
+[node name="TutorialUI" parent="." index="3" instance=ExtResource("3_1yd8j")]
+
+[node name="PanelContainer" parent="TutorialUI" index="0"]
+anchors_preset = 0
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_left = 0.0
+offset_top = 0.0
+offset_right = 137.0
+offset_bottom = 40.0
+
+[node name="Level1" parent="." index="4" instance=ExtResource("3_8b00y")]
+
+[node name="TileMapLayer2" parent="Level1/Mapa" index="0"]
+metadata/_edit_lock_ = true
+
+[node name="TileMapLayer" parent="Level1/Mapa" index="1"]
+metadata/_edit_lock_ = true
+
+[editable path="TutorialUI"]
+[editable path="Level1"]
