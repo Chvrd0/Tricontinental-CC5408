@@ -17,6 +17,12 @@ extends Node2D
 ## y el valor es el nodo del portal de salida correspondiente.
 var link: Dictionary = {}
 
+@onready var sfx_teleport: AudioStreamPlayer2D = AudioStreamPlayer2D.new()
+const TELEPORT_SOUND = preload("res://musica/SFX[1]/SFX/659369__lilmati__retro-portal-opens-up-or-closes.wav")
+
+func _ready():
+	sfx_teleport.stream = TELEPORT_SOUND
+	add_child(sfx_teleport)
 
 # ===========================
 # ==== PROCESO DE FÍSICA ====
@@ -44,6 +50,7 @@ func _physics_process(delta) -> void:
 
 
 func play_zap() -> void:
+	sfx_teleport.play()
 	var effect = $ZapEffect
 	if effect == null:
 		# No effect node; nothing to do.
@@ -87,6 +94,8 @@ func _on_area_2d_area_entered(area: Area2D) -> void:
 		# Si el portal actual no tiene un enlace de salida, no hacemos nada.
 		if not link.has(self.name):
 			return
+			
+		
 		
 		# Obtenemos el portal de salida vinculado.
 		var exit_portal: Node2D = link[self.name]
