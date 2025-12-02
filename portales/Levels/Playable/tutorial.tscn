@@ -40,24 +40,6 @@ metadata/_edit_lock_ = true
 [node name="Coin" parent="Level1" index="2"]
 position = Vector2(459, 29)
 
-<<<<<<< HEAD
-[node name="PlayerSpawn" parent="Level1" index="3"]
-position = Vector2(59, 107)
-
-[node name="Invisible" parent="." index="5" instance=ExtResource("5_xmjkx")]
-position = Vector2(-583, 199)
-rotation = -1.5708
-scale = Vector2(1000, 1)
-
-[node name="Invisible3" parent="." index="6" instance=ExtResource("5_xmjkx")]
-position = Vector2(815, 200)
-rotation = 1.5708
-scale = Vector2(1000, 1)
-
-[node name="Invisible2" parent="." index="7" instance=ExtResource("5_xmjkx")]
-position = Vector2(3, -497)
-scale = Vector2(1000, 1)
-=======
 [node name="Invisible" parent="." index="5" instance=ExtResource("5_xmjkx")]
 position = Vector2(-953, -121)
 rotation = 1.5708
@@ -87,7 +69,6 @@ scale = Vector2(20, 2)
 
 [node name="Hurtbox" parent="Invisible3" index="2"]
 scale = Vector2(10, 2)
->>>>>>> fc58ee508ee4fce72fafc6cd3cd64260375e0bdd
 
 [editable path="TutorialUI"]
 [editable path="Level1"]
