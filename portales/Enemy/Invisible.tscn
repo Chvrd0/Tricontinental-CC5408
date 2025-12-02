@@ -126,7 +126,6 @@ height = 18.0
 size = Vector2(158, 20)
 
 [node name="Invisible" type="CharacterBody2D"]
-visible = false
 motion_mode = 1
 script = ExtResource("1_kohcg")
 metadata/_custom_type_script = "uid://du4rn30mrwes0"
